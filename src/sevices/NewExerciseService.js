@@ -1,18 +1,13 @@
 class NewExerciseService {
   async execute(exercise) {
-    const { _id, description, duration, date, username } = exercise;
-    //ESSE username TEM QUE VIR DO DB E NÃO DA REQUISIÇÃO.
-    //COM O _id, TEMOS QUE BUSCAR O username NO DB PRA PODER EXIBI-LO
-
-    const user = username ? username : "Falta buscar do db";
-    const resDate = date ? date : "Falta gerar a data atual"
+    const { _id, description, durationInt: duration, resDate: date, username } = exercise;
 
     return {
       _id,
-      username: user,
-      description: "FALTA FAZER A VALIDAÇÃO DOS DADOS OBRIGATÓRIOS LA NO CONTROLLER DO NEWEXERCISE. APÓS CORRIGIR ISTO, RETIRAR ESTA STRING DO DESCRIPTION NO SERVICE DE NEWEXERCISE, VOLTANDO A EXIBIR O DESCRIPTION PASSADO PELO USUÁRIO",
+      username,
+      description,
       duration,
-      date: resDate,
+      date,
     };
   }
 }

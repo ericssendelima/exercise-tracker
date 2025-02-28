@@ -1,7 +1,14 @@
 class NewUserService {
-  execute({ _id, username }) {
+  async execute({ _id, username }) {
+    const count = 0;
+    const log = [];
     //FALTA FAZER A CONEXÃO COM O BANCO
-    return { _id, username };
+    const teste = {
+      _id,
+      username,
+      log,
+    };
+    return { _id, username, count, log };
   }
 }
 

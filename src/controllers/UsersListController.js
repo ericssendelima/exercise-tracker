@@ -1,10 +1,10 @@
-import { UsersListService } from "../sevices/UsersListService.js";
+import { UserListService } from "../sevices/UserListService.js";
 
 class UsersListController {
   async handle(req, res) {
-    const userListService = new UsersListService();
-    const userList = await userListService.execute();
-
+    const userData = req.usersValues;
+    const userListService = new UserListService();
+    const userList = await userListService.execute(userData)
 
     return res.json(userList);
   }
