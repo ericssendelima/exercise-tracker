@@ -8,7 +8,7 @@ class NewUserController {
     const _id = randomUUID();
 
     // Impedindo que o usuário salve mais do que 4 users
-    if (userData !== undefined && userData.length > 4) {
+    if (userData !== undefined && userData.length > 10) {
       clearData();
       return res.json({
         erro: "Já tem 4 users salvos. Dados excluidos com sucesso",
