@@ -6,11 +6,9 @@ export const GetDatabaseUsers = async (req, res, next) => {
   await get(ref(db, "/tracker/"))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        // console.log(snapshot.val(), " -----> log do middleware");
-        // database.push(snapshot.val());
         req.usersValues = Object.values(snapshot.val());
         req.usersKeys = Object.keys(snapshot.val());
-        console.log(req.usersKeys + " ->>>>>>> " + req.method);
+        console.log(" >>>>>>>> " + req.usersKeys + " ->>>>>>> " + req.method + " <<<<<<<");
         
         next();
       } else {

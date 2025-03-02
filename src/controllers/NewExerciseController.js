@@ -3,15 +3,26 @@ import { NewExerciseService } from "../sevices/NewExerciseService.js";
 
 class NewExerciseController {
   async handle(req, res) {
-    const { [":_id"]: _id, description, duration, date } = req.body;
+    let { [":_id"]: _id, description, duration, date } = req.body;
+    if (_id === undefined) {
+      _id = req.params._id;
+      
+    }
+
     const usersValues = req.usersValues;
+    
     const user = usersValues.filter((user) => {
       return user._id === _id;
     });
-    
 
-    console.log("Log dentro do newexercisecontroller, rota POST. user: " + user + " e os dados vindo do middleware: " + req.usersValues);
-    
+    // console.log(
+    //   " >>>> Log dentro do newexercisecontroller, rota POST. user: " +
+    //     user +
+    //     " e os dados vindo do middleware: " +
+    //     JSON.stringify(req.usersValues) +
+    //     " <<<<< "
+    // );
+
     //VALIDAR SE TODOS OS DADOS OBRIGATÓRIOS ESTÃO SENDO RECEBIDOS:
     //_id, description e duration
     if (user.length < 1) {
@@ -50,7 +61,8 @@ class NewExerciseController {
       date: resDate,
     };
 
-    const finalLog = user[0].log[0] === "" ? [newLog] : [...user[0].log, newLog];
+    const finalLog =
+      user[0].log[0] === "" ? [newLog] : [...user[0].log, newLog];
 
     const dataUser = {
       _id,
