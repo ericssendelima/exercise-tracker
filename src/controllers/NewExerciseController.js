@@ -26,9 +26,9 @@ class NewExerciseController {
     const durationInt = parseInt(duration);
 
     //Lançar erro para não salvar mais de 3 exercicios
-    if (count === 10) {
+    if (count === 30) {
       return res.json({
-        error: "Mais de 10 exercícios salvos",
+        error: "Mais de 30 exercícios salvos",
       });
     }
 
