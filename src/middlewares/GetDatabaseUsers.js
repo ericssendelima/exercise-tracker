@@ -8,7 +8,6 @@ export const GetDatabaseUsers = async (req, res, next) => {
       if (snapshot.exists()) {
         req.usersValues = Object.values(snapshot.val());
         req.usersKeys = Object.keys(snapshot.val());
-        console.log(" >>>>>>>> " + req.usersKeys + " ->>>>>>> " + req.method + " <<<<<<<");
         
         next();
       } else {

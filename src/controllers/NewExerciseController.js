@@ -15,14 +15,6 @@ class NewExerciseController {
       return user._id === _id;
     });
 
-    // console.log(
-    //   " >>>> Log dentro do newexercisecontroller, rota POST. user: " +
-    //     user +
-    //     " e os dados vindo do middleware: " +
-    //     JSON.stringify(req.usersValues) +
-    //     " <<<<< "
-    // );
-
     //VALIDAR SE TODOS OS DADOS OBRIGATÓRIOS ESTÃO SENDO RECEBIDOS:
     //_id, description e duration
     if (user.length < 1) {
