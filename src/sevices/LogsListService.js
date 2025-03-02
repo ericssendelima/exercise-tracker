@@ -2,9 +2,9 @@ class LogsListService {
   async execute({user, from, to, limit }) {
 
     const userDisplayed = {
-      _id: user[0]._id,
       username: user[0].username,
       count: user[0].count,
+      _id: user[0]._id,
       log: user[0].log
     }
     return userDisplayed

@@ -1,11 +1,9 @@
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser"
 import { routes } from "./router.js";
 
 const app = express();
 
-app.use(cookieParser())
 app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());

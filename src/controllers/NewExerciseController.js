@@ -1,3 +1,4 @@
+import { setNewData } from "../../database/firebase.js";
 import { NewExerciseService } from "../sevices/NewExerciseService.js";
 
 class NewExerciseController {
@@ -7,7 +8,7 @@ class NewExerciseController {
     const user = usersValues.filter((user) => {
       return user._id === _id;
     });
-    
+
     //VALIDAR SE TODOS OS DADOS OBRIGATÓRIOS ESTÃO SENDO RECEBIDOS:
     //_id, description e duration
     if (user.length < 1) {
@@ -15,21 +16,19 @@ class NewExerciseController {
     }
 
     if (description === "" || duration === "") {
-      return res.json({ erro: "Parâmetro(s) do exercício faldando!" });
+      return res.json({ erro: "Parâmetro(s) do exercício faltando!" });
     }
 
     //Se não tiver exercício salvo, "user.log.length" vai retornar "undefined", nesse caso, armazena "0" em count
     //Caso contrário, armazena em count, quantos exercícios salvos tem
-    let count = !user[0].log ? 0 : user[0].log.length;
+    let count = user[0].log[0] === "" ? 0 : user[0].log.length;
     count++;
     const durationInt = parseInt(duration);
 
     //Lançar erro para não salvar mais de 3 exercicios
     if (count === 4) {
-      res.clearCookie("teste");
       return res.json({
         error: "Mais de 3 exercícios salvos",
-        msg: "Usuário excluído!",
       });
     }
 
@@ -48,12 +47,16 @@ class NewExerciseController {
       date: resDate,
     };
 
+    const finalLog = user[0].log[0] === "" ? [newLog] : [...user[0].log, newLog];
+
     const dataUser = {
       _id,
       username: user[0].username,
       count,
-      log: [...user[0].log, newLog],
+      log: finalLog,
     };
+
+    setNewData(_id, dataUser);
 
     const newExerciseService = new NewExerciseService();
     const newExercise = await newExerciseService.execute({
@@ -64,13 +67,7 @@ class NewExerciseController {
       username: user[0].username,
     });
 
-    res.cookie(_id, JSON.stringify(dataUser), {
-      maxAge: 1000 * 60 * 60 * 24, // Duração de 1 dia
-      httpOnly: true, // O cookie só pode ser acessado pelo backend
-    });
-
-
-    return res.json(newExercise);
+    return res.send(newExercise);
   }
 }
 

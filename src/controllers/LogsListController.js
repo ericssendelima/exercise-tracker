@@ -6,12 +6,12 @@ class LogsListController {
     const { _id } = req.params;
 
     const usersValues = req.usersValues;
-    const user = usersValues.filter((user) => {
+
+    const user = usersValues.length < 1 ? null : usersValues.filter((user) => {
       return user._id === _id;
     });
 
-
-
+    //Verificando se o id passado pertence a algum usuário salvo
     if (user.length < 1) {
       return res.json({ erro: "Este usuário não existe!", _id });
     }

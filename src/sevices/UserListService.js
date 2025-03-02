@@ -3,10 +3,10 @@ class UserListService {
     let usersList = [];
 
     for (let user of userData) {
-      usersList = [...usersList, { _id: user._id, username: user.username }];
+      usersList = [...usersList, { username: user.username, _id: user._id }];
     }
 
-    return usersList;
+    return usersList;//retorna um array de objetos
   }
 }
 

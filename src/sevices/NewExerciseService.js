@@ -3,11 +3,11 @@ class NewExerciseService {
     const { _id, description, durationInt: duration, resDate: date, username } = exercise;
 
     return {
-      _id,
       username,
       description,
       duration,
       date,
+      _id
     };
   }
 }
