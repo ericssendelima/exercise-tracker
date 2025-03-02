@@ -27,6 +27,8 @@ export { LogsListController };
 
 /*
 
+https://exercise-tracker-z7yi.onrender.com/api/users/6f652d01-01ae-4fb3-919c-af048d8489c9/logs?from=1989-12-31&to=1990-01-04
+
 GET user's exercise log: GET /api/users/:_id/logs?[from][&to][&limit]
 
 [ ] = optional

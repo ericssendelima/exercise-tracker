@@ -8,7 +8,10 @@ class NewExerciseController {
     const user = usersValues.filter((user) => {
       return user._id === _id;
     });
+    
 
+    console.log("Log dentro do newexercisecontroller, rota POST. user: " + user + " e os dados vindo do middleware: " + req.usersValues);
+    
     //VALIDAR SE TODOS OS DADOS OBRIGATÓRIOS ESTÃO SENDO RECEBIDOS:
     //_id, description e duration
     if (user.length < 1) {
@@ -26,9 +29,9 @@ class NewExerciseController {
     const durationInt = parseInt(duration);
 
     //Lançar erro para não salvar mais de 3 exercicios
-    if (count === 30) {
+    if (count === 15) {
       return res.json({
-        error: "Mais de 30 exercícios salvos",
+        error: "Mais de 15 exercícios salvos",
       });
     }
 

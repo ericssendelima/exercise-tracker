@@ -24,10 +24,10 @@ routes.get("/api/users", GetDatabaseUsers, new UsersListController().handle); //
 routes.get("/api/users/:_id/logs", GetDatabaseUsers, new LogsListController().handler); //Logs de um usuário especifico
 routes.get("/limpar-dados", new LimparDados().handle); //Limpa todos os dados
 // routes.get("/teste/:_id", new testeController().handle); //Logs de um usuário especifico
-routes.get("/teste", GetDatabaseUsers,new testeController().handle); //Logs de um usuário especifico
+routes.get("/teste", GetDatabaseUsers, new testeController().handle); //Logs de um usuário especifico
 
 //Requisições POST
-routes.post("/api/users", GetDatabaseUsers,new NewUserController().handle); //cria um novo usuário
-routes.post("/api/users/:_id/exercises", GetDatabaseUsers,new NewExerciseController().handle); //cria um novo exercício de um novo usuário
+routes.post("/api/users", GetDatabaseUsers, new NewUserController().handle); //cria um novo usuário
+routes.post("/api/users/:_id/exercises", GetDatabaseUsers, new NewExerciseController().handle); //cria um novo exercício de um novo usuário
 
 export { routes };
